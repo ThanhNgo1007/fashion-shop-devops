@@ -1,0 +1,323 @@
+.profile-page {
+  padding: 100px 24px 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Profile Header */
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+.profile-header-content {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex: 1;
+  min-width: 0; /* Quan trọng: Cho phép flex item co lại mà không vỡ layout */
+}
+
+.profile-avatar {
+  border: 3px solid #f0f0f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  object-fit: cover; /* Đảm bảo ảnh luôn lấp đầy khung mà không bị méo */
+  flex-shrink: 0;    /* Ngăn không cho avatar bị co lại khi màn hình nhỏ */
+  width: 120px;      /* Cố định chiều rộng (khớp với size={120} trong JSX) */
+  height: 120px;     /* Cố định chiều cao */
+  border-radius: 50%; /* Đảm bảo luôn tròn */
+}
+
+.profile-info h1 {
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  color: #1a1a1a;
+
+  white-space: nowrap;       /* Không cho xuống dòng */
+  overflow: hidden;          /* Ẩn phần chữ thừa nếu quá dài */
+  text-overflow: ellipsis;   /* Thêm dấu "..." nếu tên quá dài */
+  max-width: 100%;           /* Giới hạn chiều rộng */
+}
+
+.profile-email {
+  font-size: 16px;
+  color: #666;
+  margin: 0 0 4px 0;
+}
+
+.profile-meta {
+  font-size: 14px;
+  color: #999;
+  margin: 0;
+}
+
+
+.profile-actions-right {
+  display: flex;
+  flex-direction: column; /* Xếp chồng lên nhau (Dọc) */
+  align-items: flex-end;  /* Căn lề phải */
+  gap: 16px;              /* Khoảng cách giữa các nút */
+  width: 100%;            /* Chiếm hết chiều ngang của cha để đẩy sang phải được */
+}
+
+.btn-cancel:hover {
+  color: #1a1a1a !important;
+  border: 1px solid #1a1a1a !important;
+}
+
+.profile-edit-btn {
+  height: 48px;
+  padding: 0 32px;
+  font-size: 16px;
+  border-radius: 4px;
+width: 200px;  background: #1a1a1a;
+  border-color: #1a1a1a;
+}
+
+.change-password-btn {
+  height: 48px;
+  padding: 0 32px;
+  font-size: 16px;
+width: 200px;  border-radius: 4px;
+  border-color: #1a1a1a;
+}
+
+.delete-account-btn {
+  height: 48px;
+  padding: 0 32px;
+  font-size: 16px;
+  border-radius: 4px;
+width: 200px;  background-color: #ff4d4f;
+  border-color: #1a1a1a;
+  color: white;
+}
+
+.profile-edit-btn:hover {
+  background: #333 !important;
+  border-color: #333 !important;
+}
+
+.change-password-btn:hover {
+  background: #4d4a4a;
+  border-color: #333 !important;
+  color: black !important;
+}
+
+.delete-account-btn:hover {
+  background-color: #ff7875 !important;
+  border-color: #333 !important;
+  color: white !important;
+}
+
+/* Profile Section */
+.profile-section h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+}
+
+.profile-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.detail-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detail-value {
+  font-size: 16px;
+  color: #1a1a1a;
+}
+
+/* Tabs */
+.profile-tabs {
+  margin-top: 32px;
+}
+
+.profile-tabs .ant-tabs-tab {
+  font-size: 16px;
+  padding: 12px 24px;
+}
+
+.tab-content {
+  padding: 24px 0;
+}
+
+/* Orders List */
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border: 1px solid #f0f0f0;
+  border-radius: 4px;
+  background: #fafafa;
+  transition: all 0.3s ease;
+}
+
+.order-item:hover {
+  border-color: #d9d9d9;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.order-info {
+  flex: 1;
+}
+
+.order-id {
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 4px 0;
+}
+
+.order-date {
+  font-size: 14px;
+  color: #999;
+  margin: 0;
+}
+
+.order-status {
+  margin: 0 24px;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.status-badge.status-đã-giao {
+  background: #f6ffed;
+  color: #52c41a;
+}
+
+.status-badge.status-đang-giao {
+  background: #e6f7ff;
+  color: #1890ff;
+}
+
+.status-badge.status-chờ-xác-nhận {
+  background: #fff7e6;
+  color: #fa8c16;
+}
+
+.order-total {
+  font-weight: 600;
+  color: #1a1a1a;
+  min-width: 120px;
+  text-align: right;
+}
+
+/* Reviews List */
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.review-item {
+  padding: 16px;
+  border: 1px solid #f0f0f0;
+  border-radius: 4px;
+  background: #fafafa;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.review-product {
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.review-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.rating-text {
+  color: #999;
+}
+
+.review-comment {
+  color: #666;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .profile-page {
+    padding: 100px 16px 80px;
+  }
+
+  .profile-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .profile-header-content {
+    flex-direction: column;
+  }
+
+  .profile-info h1 {
+    font-size: 24px;
+  }
+
+  .profile-details {
+    grid-template-columns: 1fr;
+  }
+
+  .order-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .order-status {
+    margin: 0;
+  }
+
+  .order-total {
+    text-align: left;
+  }
+
+  .review-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
