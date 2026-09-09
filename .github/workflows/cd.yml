@@ -39,15 +39,15 @@ jobs:
           username: ${{ secrets.DEPLOY_USER }}
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           script: |
+            export PATH=$PATH:/usr/local/bin
             aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
-            docker pull ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/fashionshop-backend:latest
-            docker pull ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/fashionshop-frontend:latest
             cd /opt/fashionshop
-            docker-compose up -d
+            docker compose pull || docker-compose pull
+            docker compose up -d || docker-compose up -d
 
       - name: Post-deploy Staging Smoke Test
         run: |
-          sleep 10
+          sleep 15
           # Curl health endpoint to ensure application is running
           curl -f http://${{ secrets.DEPLOY_HOST }}/health || exit 1
 
@@ -69,14 +69,14 @@ jobs:
           username: ${{ secrets.DEPLOY_USER }}
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           script: |
+            export PATH=$PATH:/usr/local/bin
             aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
-            docker pull ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/fashionshop-backend:latest
-            docker pull ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/fashionshop-frontend:latest
             cd /opt/fashionshop-prod
-            docker-compose up -d
+            docker compose pull || docker-compose pull
+            docker compose up -d || docker-compose up -d
 
       - name: Post-deploy Production Smoke Test
         run: |
-          sleep 10
+          sleep 15
           # Curl health endpoint to ensure application is running
           curl -f http://${{ secrets.DEPLOY_HOST }}/health || exit 1
